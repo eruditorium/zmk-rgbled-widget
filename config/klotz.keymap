@@ -36,6 +36,10 @@
   require-prior-idle-ms = <200>;
 };
 
+&soft_off {
+    hold-time-ms = <2000>;
+};
+
 / {
     behaviors {
         td0: tap_dance_0 {
