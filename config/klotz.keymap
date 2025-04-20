@@ -47,7 +47,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
-                = <&macro_press &bl BL_SET 10>
+                = <&macro_tap &bl BL_SET 10>
                 , <&macro_wait_time 2000>
                 , <&macro_tap &bl BL_OFF>
                 , <&macro_wait_time 500>
