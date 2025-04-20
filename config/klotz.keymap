@@ -48,8 +48,9 @@
             #binding-cells = <0>;
             bindings
                 = <&macro_press &bl BL_SET 10>
-                , <&macro_wait_time 2000>
                 , <&macro_press &soft_off>
+                , <&macro_wait_time 2000>
+                , <&macro_tap &bl BL_OFF>
                 , <&macro_pause_for_release>
                 , <&macro_release &soft_off>
                 ;
