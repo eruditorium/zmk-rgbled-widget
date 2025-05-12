@@ -237,8 +237,8 @@ label= "MED"                               ;
 // ╷           ╷          ╷          ╷          ╷           ╷   ╷          ╷           ╷           ╷           ╷           ╷
 
     &td1       &trans     &trans     &trans     &lights_out     &trans     &trans      &trans      &trans       &trans
-    &trans     &kp C_RW   &kp C_MUTE &kp C_FF   &trans          &trans     &trans      &trans      &trans       &trans
-    &trans     &kp C_PREV &kp C_PP   &kp C_NEXT &trans          &kp RG(1)     &trans      &trans      &trans       &trans     
+    &trans     &kp C_RW   &kp C_MUTE &kp C_FF   &trans          &kp LG(N4) &trans      &trans      &trans       &trans
+    &trans     &kp C_PREV &kp C_PP   &kp C_NEXT &trans          &kp LG(N1) &kp LG(N2)  &kp LG(N3)      &trans       &trans     
                                      &trans     &trans          &trans     &trans
                         >;
             sensor-bindings = <&inc_dec_kp C_NEXT C_PREV &inc_dec_kp DOWN UP>;
