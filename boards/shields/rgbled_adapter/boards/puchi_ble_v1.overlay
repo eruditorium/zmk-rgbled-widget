@@ -1,10 +1,24 @@
 / {
     aliases {
-        led-red = &red_led;
-        led-green = &green_led;
-        led-blue = &blue_led;
+        red_led = &red_led_node;
+        green_led = &green_led_node;
+        blue_led = &blue_led_node;
     };
 
+	red_led_node: red_led {
+        gpios = <&gpio1 17 GPIO_OUTPUT_ACTIVE>;
+        label = "RED_LED";
+    }; 
+	
+	green_led_node: green_led {
+        gpios = <&gpio1 20 GPIO_OUTPUT_ACTIVE>;
+        label = "RED_LED";
+    };
+	
+	blue_led_node: blue_led {
+        gpios = <&gpio1 24 GPIO_OUTPUT_ACTIVE>;
+        label = "RED_LED";
+    };
     leds {
         status = "okay";
     };
