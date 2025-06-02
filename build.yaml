@@ -13,7 +13,10 @@
 #
 ---
 include:
-  - board: nice_nano_v2
+  - board: puchi_ble_v1
     shield: klotz_left rgbled_adapter
-  - board: nice_nano_v2
+  - board: puchi_ble_v1
     shield: klotz_right rgbled_adapter
+  - board: puchi_ble_v1
+    shield: settings_reset
+
