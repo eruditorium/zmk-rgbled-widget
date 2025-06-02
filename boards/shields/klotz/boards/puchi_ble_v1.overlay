@@ -1,31 +1,68 @@
 #include <dt-bindings/led/led.h>
 
-&spi1 {
-	compatible = "nordic,nrf-spim";
-	status = "okay";
-	mosi-pin = <6>;
-	// Unused pins, needed for SPI definition, but not used by the ws2812 driver itself.
-	sck-pin = <12>;  // 0.12 is not broken out on the nRFMicro
-	miso-pin = <22>; // 0.22 is not broken out on the nRFMicro
 
-	led_strip: ws2812@0 {
-		compatible = "worldsemi,ws2812-spi";
-		label = "WS2812";
-
-		/* SPI */
-		reg = <0>; /* ignored, but necessary for SPI bindings */
-		spi-max-frequency = <4000000>;
-
-		/* WS2812 */
-		chain-length = <21>; /* arbitrary; change at will */
-		spi-one-frame = <0x70>;
-		spi-zero-frame = <0x40>;
-		color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
-	};
+&pinctrl {
+    // backlight
+    pwm0_default: pwm0_default {
+        group1 {
+            psels = <NRF_PSEL(PWM_OUT0, 0, 20)>,
+                    <NRF_PSEL(PWM_OUT1, 0, 22)>,
+                    <NRF_PSEL(PWM_OUT2, 0, 24)>;
+        };
+    };
+    pwm0_sleep: pwm0_sleep {
+        group1 {
+            psels = <NRF_PSEL(PWM_OUT0, 0, 20)>,
+                    <NRF_PSEL(PWM_OUT1, 0, 22)>,
+                    <NRF_PSEL(PWM_OUT2, 0, 24)>;
+            low-power-enable;
+        };
+    };
+    // encoder driver
+    qdec_default: qdec_default {
+        group1 {
+            psels = <NRF_PSEL(QDEC_A, 1, 11)>,
+                    <NRF_PSEL(QDEC_B, 1, 10)>;
+            bias-pull-up;
+        };
+    };
 };
 
 / {
+    backlight: pwmleds {
+        compatible = "pwm-leds";
+        label = "Backlight LEDs";
+        pwm_led_0: pwm_led_0 {
+            pwms = <&pwm0 0 PWM_MSEC(10) PWM_POLARITY_NORMAL>;
+        };
+        pwm_led_1: pwm_led_1 {
+            pwms = <&pwm0 1 PWM_MSEC(10) PWM_POLARITY_NORMAL>;
+        };
+        pwm_led_2: pwm_led_2 {
+            pwms = <&pwm0 2 PWM_MSEC(10) PWM_POLARITY_NORMAL>;
+        };
+    };
+};
+
+&pwm0 {
+    status = "okay";
+    pinctrl-0 = <&pwm0_default>;
+    pinctrl-1 = <&pwm0_sleep>;
+    pinctrl-names = "default", "sleep";
+};
+
+// Set up the QDEC hardware based driver and give it the same label as the deleted node.
+//  encoder: &qdec0 {
+//    status = "okay";
+//    led-pre = <0>;
+//    steps = <4>;
+//    pinctrl-0 = <&qdec_default>;
+//    pinctrl-names = "default";
+//};
+
+
+/ {
 	chosen {
-		zmk,underglow = &led_strip;
+		 zmk,backlight = &backlight;
 	};
 };
