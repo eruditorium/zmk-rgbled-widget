@@ -172,7 +172,7 @@ base_layer {
 // ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
 // ┃     Z     ┃     X     ┃     C     ┃     V     ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃ NAV/BSPC  ┃     ENTER ┃   ┃    SPC    ┃  SYM/TAB  ┃
+//                                     ┃ NAV/BSPC  ┃   ENTER   ┃   ┃    SPC    ┃  SYM/TAB  ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷
@@ -193,20 +193,20 @@ nav_layer {
     label= "NAV"                              ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 // ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-// ┃    ESC    ┃   HOME    ┃    UP     ┃  PG UP    ┃           ┃   ┃      *    ┃     7     ┃     8     ┃     9     ┃     +     ┃
+// ┃    ESC    ┃   HOME    ┃    UP     ┃   PG UP   ┃           ┃   ┃     7     ┃     8     ┃     9     ┃     +     ┃     *     ┃
 // ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-// ┃    TAB    ┃   LEFT    ┃   DOWN    ┃   RIGHT   ┃           ┃   ┃     /     ┃     4     ┃     5     ┃     6     ┃     -     ┃
+// ┃    TAB    ┃   LEFT    ┃   DOWN    ┃   RIGHT   ┃           ┃   ┃     4     ┃     5     ┃     6     ┃     -     ┃     =     ┃
 // ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
-// ┃    CTRL   ┃    END    ┃           ┃  PG DWN   ┃           ┃   ┃     0     ┃     1     ┃     2     ┃     3     ┃     =     ┃
+// ┃   SHIFT   ┃    END    ┃           ┃  PG DWN   ┃           ┃   ┃     1     ┃     2     ┃     3     ┃     .     ┃     /     ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 //                                     ┃     ▼     ┃     ▼     ┃   ┃     ▼     ┃     ▼     ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
  bindings = <
-// ╷            ╷            ╷           ╷            ╷           ╷    ╷           ╷           ╷           ╷               ╷              ╷
+// ╷           ╷           ╷           ╷            ╷          ╷   ╷           ╷           ╷           ╷           ╷           ╷
 
-    &kp ESCAPE   &kp HOME     &kp UP      &kp PG_UP     &none           &kp ASTERISK  &kp KP_N7   &kp KP_N8 &kp KP_N9       &kp PLUS
-    &kp TAB      &kp LEFT     &kp DOWN    &kp RIGHT     &none           &kp SLASH   &kp KP_N4   &kp KP_N5   &kp KP_N6       &kp MINUS
-    &kp LCTRL    &kp END      &none       &kp PG_DN     &none           &kp KP_N0   &kp KP_N1   &kp KP_N2   &kp KP_N3       &kp EQUAL
+    &kp ESCAPE   &kp HOME     &kp UP      &kp PG_UP     &none           &kp KP_N7   &kp KP_N8   &kp KP_N9   &kp PLUS        &kp ASTERISK
+    &kp TAB      &kp LEFT     &kp DOWN    &kp RIGHT     &none           &kp KP_N4   &kp KP_N5   &kp KP_N6   &kp MINUS       &kp EQUAL
+    &kp LSHIFT   &kp END      &none       &kp PG_DN     &none           &kp KP_N1   &kp KP_N2   &kp KP_N3   &kp DOT         &trans
                                           &trans        &trans          &trans      &trans
                         >;
             sensor-bindings = <&inc_dec_kp LC(Y) LC(Z) &inc_dec_kp RIGHT LEFT>;
