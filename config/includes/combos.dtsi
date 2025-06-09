@@ -13,12 +13,6 @@ Create a combo that triggers binding if all keys in position keypos are pressed.
     timeout (optional): combo timeout in ms (defaults to COMBO_TERM, see below)
     prior_idle (optional): require-prior-idle timout in ms (disabled by default)
     extra (optional): additional configuration options (e.g., slow-release;)
-
-If not specified, timeout defaults to the COMBO_TERM, which in turn default to 30ms. The default can be globally overwritten with:
-
-#undef COMBO_TERM
-#define COMBO_TERM 50
-
 */
 
 /* KEY POSITIONS (using keypos_def helpers)
@@ -53,11 +47,11 @@ ZMK_COMBO(quote, &kp SINGLE_QUOTE, RB1 RB2, ALL, 25)
 // =
 ZMK_COMBO(equal, &kp EQUAL, RM3 RM4, ALL, 25)
 // selectline
-ZMK_COMBO(selectline, &kp SELECT_LINE, LM3 LM4, ALL, 25)
+ZMK_COMBO(selectline, selectline, LM3 LM4, ALL, 25)
 // selectword
-ZMK_COMBO(selectword, &kp SELECT_WORD, RM2 RM3, ALL, 25)
+ZMK_COMBO(selectword, selectword, RM2 RM3, ALL, 25)
 // capsword
-ZMK_COMBO(capsword, &kp CAPS_WORD, LM1 RM1, ALL, 25)
+ZMK_COMBO(capsword, &caps_word, LM1 RM1, ALL, 25)
 // calculator
 ZMK_COMBO(calc, &kp C_AL_CALC, RT0 RM0, ALL, 25)
 // battery
