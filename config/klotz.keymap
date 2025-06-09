@@ -25,8 +25,8 @@
 
 #define DEF 0
 #define NAV 1
-#define FN 2
-#define NUM 3
+#define SYM 2
+#define FUN 3
 
 /* Global defaults */
 
@@ -52,26 +52,25 @@
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // Right-hand keys.
 #define THUMBS LH1 LH0 RH0 RH1                                              // Thumb keys.
 
-/* Global defaults */
 
-#define QUICK_TAP_MS 175
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
+  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
+               tapping-term-ms = <280>; quick-tap-ms = <QUICK_TAP_MS>;         \
+               require-prior-idle-ms = <150>; hold-trigger-on-release;         \
+               hold-trigger-key-positions = <TRIGGER_POS>;)
 
-&sk {
-  release-after-ms = <900>;
-  quick-release;
-};
+MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
+MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
-&sl { // Allow sticky mods to chord across sticky layers.
-  ignore-modifiers;
-};
+// Hack: Make HRM combos tap-only (cf, ZMK issue #544).
+#define ZMK_COMBO_8(NAME, TAP, POS, LAYERS, COMBO_MS, IDLE_MS, HOLD, SIDE)     \
+  MAKE_HRM(hm_combo_##NAME, &kp, TAP, SIDE THUMBS)                             \
+  ZMK_COMBO_6(NAME, &hm_combo_##NAME HOLD 0, POS, LAYERS, COMBO_MS, IDLE_MS)
 
-&lt {
-  flavor = "balanced";
-  tapping-term-ms = <200>;
-  quick-tap-ms = <QUICK_TAP_MS>;
-};
 
-/* Homerow mods */
+/* Combos */
+#include "includes/macros.dtsi"
+#include "includes/combos.dtsi"
 
 /* Nav cluster */
 
@@ -102,65 +101,24 @@ ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 #define NAV_DEL   &mt LC(DEL)  DEL   // Tap: del   | Long-tap: delete word fwd.
 
 
-/* Left-hand HRMs. */
-ZMK_HOLD_TAP(hml,
-    flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <175>;
-    require-prior-idle-ms = <150>;
-    bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <KEYS_R THUMBS>;
-    hold-trigger-on-release;
-)
 
-/* Right-hand HRMs. */
-ZMK_HOLD_TAP(hmr,
-    flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <175>;
-    require-prior-idle-ms = <150>;
-    bindings = <&kp>, <&kp>;
-    hold-trigger-key-positions = <KEYS_L THUMBS>;
-    hold-trigger-on-release;
-)
+// Tap: backspace | Lshft + tap: delete | Rshft + tap: shift-delete.
+ZMK_MOD_MORPH(bs_del, bindings = <&kp BSPC>, <&kp DEL>;
+              mods = <(MOD_LSFT|MOD_RSFT)>; keep-mods = <MOD_RSFT>;)
 
-/ {
-    behaviors {
-        td2: tap_dance_2 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_2";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&kp LG(LEFT)>, <&kp LS(LG(LEFT))>;
-        };
-        td3: tap_dance_3 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_3";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&kp LG(RIGHT)>, <&kp LS(LG(RIGHT))>;
-        };
+// Tap: copy | double-tap: cut.
+ZMK_TAP_DANCE(copy_cut, bindings = <&kp LC(INS)>, <&kp LC(X)>;
+              tapping-term-ms = <200>;)
 
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <170>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <0>;
-            require-prior-idle-ms = <125>;
-            bindings = <&kp>, <&kp>;
-        };
 
-        shm: shift_hr_mod {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <150>;
-            flavor = "tap-preferred";
-            quick-tap-ms = <0>;
-            require-prior-idle-ms = <125>;
-            bindings = <&kp>, <&kp>;
-        };
-    };
+// Misc aliases. [TODO: clean up]
+#define CANCEL    &kp K_CANCEL            // Cancel caps-word & auto-layers.
+#define DSK_PREV  &hmr LCTRL LG(LC(LEFT)) // Previous desktop.
+#define DSK_NEXT  &hmr LALT LG(LC(RIGHT)) // Next     desktop.
+#define PIN_WIN   &kp LG(LC(LS(Q)))       // Pin window across desktops.
+#define PIN_APP   &kp LG(LC(LS(A)))       // Pin application across desktops.
+#define DSK_MGR   &kp LA(GRAVE)           // Desktop manager.
+#define VOL_DOWN  &hmr RSHFT C_VOL_DN
 
 /* Keymap */
     keymap {
@@ -168,7 +126,7 @@ ZMK_HOLD_TAP(hmr,
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 base_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-    label= "BASE"                       ;
+    label= "DEF"                       ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 // ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 // ┃     Q     ┃     W     ┃     E     ┃     R     ┃     T     ┃   ┃     Y     ┃     U     ┃     I     ┃     O     ┃     P     ┃
@@ -247,9 +205,9 @@ label= "SYM"                               ;
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 
-                adjust_layer {
+                function_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-label= "ADJ"                               ;
+label= "FUN"                               ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 // ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 // ┃           ┃           ┃           ┃           ┃           ┃   ┃   VOL UP  ┃    F7     ┃    F8     ┃     F9    ┃    F12    ┃
