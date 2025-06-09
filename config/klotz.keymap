@@ -144,7 +144,7 @@ base_layer {
     &kp Q        &kp W       &kp E       &kp R        &kp T          &kp Y       &kp U        &kp I       &kp O       &kp P
     &kp A        &kp S       &kp D       &hml LSHFT F &kp G          &kp H       &hmr RSHFT J &kp K       &kp L       &kp SEMI
     &hml LCTRL Z &hml LGUI X &hml LALT C &kp V        &kp B          &kp N       &kp M        &hmr RALT COMMA   &hmr RGUI DOT     &hmr RCTRL FSLH
-                                        &lt NAV BSPC &lt ADJ RET    &lt NUM SPACE   &lt SYM TAB
+                                         &lt NAV BSPC &lt FUN RET    &kp SPACE   &lt SYM TAB
                         >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LC(RIGHT) LC(LEFT)>;
                 };
