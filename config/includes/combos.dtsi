@@ -1,0 +1,66 @@
+/*
+** ZMK_COMBO **
+** Synopsis **
+
+ZMK_COMBO(name, bindings, keypos, layers, timeout, prior_idle, extra)
+
+Create a combo that triggers binding if all keys in position keypos are pressed.
+
+    name: a unique identifier string
+    binding: a behavior instance that is triggered by the combo
+    keypos: a list of 2 or more key positions that activate the combo
+    layers (optional): a list of layers on which the combo can be activated (defaults to All)
+    timeout (optional): combo timeout in ms (defaults to COMBO_TERM, see below)
+    prior_idle (optional): require-prior-idle timout in ms (disabled by default)
+    extra (optional): additional configuration options (e.g., slow-release;)
+
+If not specified, timeout defaults to the COMBO_TERM, which in turn default to 30ms. The default can be globally overwritten with:
+
+#undef COMBO_TERM
+#define COMBO_TERM 50
+
+*/
+
+/* KEY POSITIONS (using keypos_def helpers)
+╭─────────────────────┬─────────────────────╮
+│ LT4 LT3 LT2 LT1 LT0 │ RT0 RT1 RT2 RT3 RT4 │
+│ LM4 LM3 LM2 LM1 LM0 │ RM0 RM1 RM2 RM3 RM4 │
+│ LB4 LB3 LB2 LB1 LB0 │ RB0 RB1 RB2 RB3 RB4 │
+╰───────────╮ LH1 LH0 │ RH0 RH1 ╭───────────╯
+            ╰─────────┴─────────╯            */
+
+#undef COMBO_TERM
+#define COMBO_TERM 50
+
+ZMK_COMBO(esc,  &kp ESC, LT4 LT3, ALL, 25)
+ZMK_COMBO(tab, &kp TAB, LM4 LM3, ALL, 25)
+ZMK_COMBO(bspc, &kp BSPC, RT3 RT4, ALL, 25)
+ZMK_COMBO(minus, &kp MINUS, LM2 LM1, ALL, 25)
+ZMK_COMBO(underscore, &kp UNDERSCORE, RM1 RM2, ALL, 25)
+// {}
+ZMK_COMBO(lbrace, &kp LEFT_BRACE, LT1 LT0, ALL, 25)
+ZMK_COMBO(rbrace, &kp RIGHT_BRACE, RT0 RT1, ALL, 25)
+// []
+ZMK_COMBO(lbracket, &kp LEFT_BRACKET, LM1 LM0, ALL, 25)
+ZMK_COMBO(rbracket, &kp RIGHT_BRACKET, RM0 RM1, ALL, 25)
+// ()
+ZMK_COMBO(lparenthesis, &kp LEFT_PARENTHESIS, LB1 LB0, ALL, 25)
+ZMK_COMBO(rparenthesis, &kp RIGHT_PARENTHESIS, RB0 RB1, ALL, 25)
+// ""
+ZMK_COMBO(double_quotes, &kp DOUBLE_QUOTES, LB2 LB1, ALL, 25)
+// ''
+ZMK_COMBO(quote, &kp SINGLE_QUOTE, RB1 RB2, ALL, 25)
+// =
+ZMK_COMBO(equal, &kp EQUAL, RM3 RM4, ALL, 25)
+// selectline
+ZMK_COMBO(selectline, &kp SELECT_LINE, LM3 LM4, ALL, 25)
+// selectword
+ZMK_COMBO(selectword, &kp SELECT_WORD, RM2 RM3, ALL, 25)
+// capsword
+ZMK_COMBO(capsword, &kp CAPS_WORD, LM1 RM1, ALL, 25)
+// calculator
+ZMK_COMBO(calc, &kp C_AL_CALC, RT0 RM0, ALL, 25)
+// battery
+ZMK_COMBO(indbat, &ind_bat, LH1 LH0, ALL, 25)
+ZMK_COMBO(indcon, &ind_con, RH0 RH1, ALL, 25)
+// end of combos
