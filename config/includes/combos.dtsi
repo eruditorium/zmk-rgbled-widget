@@ -47,9 +47,9 @@ ZMK_COMBO(quote, &kp SINGLE_QUOTE, RB1 RB2, ALL, 25)
 // =
 ZMK_COMBO(equal, &kp EQUAL, RM3 RM4, ALL, 25)
 // selectline
-ZMK_COMBO(selectline, selectline, LM3 LM4, ALL, 25)
+ZMK_COMBO(select_line, selectline, LM3 LM4, ALL, 25)
 // selectword
-ZMK_COMBO(selectword, selectword, RM2 RM3, ALL, 25)
+ZMK_COMBO(select_word, selectword, RM2 RM3, ALL, 25)
 // capsword
 ZMK_COMBO(capsword, &caps_word, LM1 RM1, ALL, 25)
 // calculator
