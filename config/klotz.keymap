@@ -208,7 +208,7 @@ label= "SYM"                               ;
 // ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
 // ┃  LSHIFT   ┃     ^     ┃           ┃           ┃     (     ┃   ┃     )     ┃     \     ┃     ²     ┃     ³     ┃           ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃     ADJ   ┃     ▼     ┃   ┃     ▼     ┃     ▼     ┃
+//                                     ┃    DEL    ┃     ▼     ┃   ┃     ▼     ┃     ▼     ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┛
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷
@@ -216,7 +216,7 @@ label= "SYM"                               ;
    &kp EXCL     &kp AT      &kp HASH     &kp DLLR    &kp LBRC       &kp RBRC    &kp RA(Y)   &kp AMPS    &kp RA(P)   &kp RA(LS(COMMA))
    &kp RA(Q)    &kp RA(S)   &kp PERCENT  &kp TILD    &kp LBKT       &kp RBKT    &kp PIPE    &none       &none    &none
    &kp LSHFT    &kp CARET   &none        &none       &kp LPAR       &kp RPAR    &kp BSLH    &kp RA(N2)  &kp RA(N3)  &none
-                                         &trans      &trans         &trans      &trans
+                                         &kp DEL     &trans         &trans      &trans
                         >;
                 sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LC(RIGHT) LC(LEFT)>;
                 };
