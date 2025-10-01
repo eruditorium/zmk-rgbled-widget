@@ -419,5 +419,15 @@ label= "FUN"                               ;
             bindings = <&kp TAB>;
             key-positions = <13 14>;
         };
+
+        Del {
+            bindings = <&kp DEL>;
+            key-positions = <18 19>;
+        };
+
+        BkSpc {
+            bindings = <&kp BSPC>;
+            key-positions = <8 9>;
+        };
     };
 };
