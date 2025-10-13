@@ -55,10 +55,6 @@
 
 #define QUICK_TAP_MS 175
 
-&sk {
-  release-after-ms = <900>;
-  quick-release;
-};
 
 &sl { // Allow sticky mods to chord across sticky layers.
   ignore-modifiers;
