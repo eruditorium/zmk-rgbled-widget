@@ -37,47 +37,15 @@
   ╰───────────╮ 30  31 │ 32  33 ╭───────────╯ 
               ╰────────┴────────╯              */
 
-/* Homerow mods */
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4  // Left-hand keys.
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4  // Right-hand keys.
-#define THUMBS LH1 LH0 RH0 RH1                                              // Thumb keys.
-
 /* Nav cluster */
 // Trigger tap-action on all interrupts.
 #define MT_CORE                                                                \
-  flavor = "tap-preferred";                                                    \
-  tapping-term-ms = <220>;                                                     \
-  quick-tap-ms = <220>;                                                        \
+  flavor = "tap-preferred";              z                                      \
+  tapping-term-ms = <170>;                                                     \
+  quick-tap-ms = <100>;                                                        \
   hold-trigger-key-positions = <0>;
 
 &mt { MT_CORE };
-
-/ {
-    behaviors {
-        hml: home_row_mod_left {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            require-prior-idle-ms = <150>;
-            tapping-term-ms = <280>;
-            quick-tap-ms = <175>;
-            bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <KEYS_R>; 
-            hold-trigger-on-release;
-        };
-        hmr: home_row_mod_right {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            require-prior-idle-ms = <150>;
-            tapping-term-ms = <280>;
-            quick-tap-ms = <175>;
-            bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <KEYS_L>;
-            hold-trigger-on-release;
-        };
-    };
-};
 
 // Mask CTRL on left/right hold to avoid accidental jumps to start/end of doc.
 #define MASK_MODS(NAME, MODS, BINDING)                                         \
@@ -94,17 +62,13 @@ ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 #define NAV_UP    &mt LC(HOME) UP    // Tap: up    | Long-tap: start of doc.
 #define NAV_DOWN  &mt LC(END)  DOWN  // Tap: down  | Long-tap: end   of doc.
 #define NAV_BSPC  &mt LC(BSPC) BSPC  // Tap: bspc  | Long-tap: delete word bwd.
-#define NAV_DEL   &mt LC(DEL)  DEL   // Tap: del   | Long-tap: delete word fwd.
-
-/* Global defaults */
-
-#define QUICK_TAP_MS 175
+#define NAV_DEL   &mt LC(DEL)  DEL   // Tap: del   | Long-tap: delete word fwd
 
 &mt {
+  flavor = "tap-preferred";
+  tapping-term-ms = <150>;
   quick-tap-ms = <100>;
   global-quick-tap;
-  flavor = "tap-preferred";
-  tapping-term-ms = <170>;
 };
 // ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
@@ -131,8 +95,8 @@ base_layer {
 // ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷
 
     &kp Q        &kp W       &kp E       &kp R        &kp T          &kp Y       &kp U        &kp I       &kp O       &kp P
-    &kp A        &kp S       &kp D       &hml LSHFT F &kp G          &kp H       &hmr RSHFT J &kp K       &kp L       &kp SEMI
-    &hml LCTRL Z &hml LGUI X &hml LALT C &kp V        &kp B          &kp N       &kp M        &hmr RALT COMMA   &hmr RGUI DOT     &hmr RCTRL FSLH
+    &kp A        &kp S       &kp D       &mt LSHFT F  &kp G          &kp H       &mt RSHFT J  &kp K       &kp L       &kp SEMI
+    &mt LCTRL Z  &mt LGUI X  &mt LALT C  &kp V        &kp B          &kp N       &kp M        &mt RALT COMMA   &mt RGUI DOT     &mt RCTRL FSLH
                                          &lt NAV BSPC &lt FUN RET    &kp SPACE   &lt SYM TAB
                         >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LC(RIGHT) LC(LEFT)>;
