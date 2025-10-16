@@ -45,8 +45,6 @@
   quick-tap-ms = <100>;                                                        \
   hold-trigger-key-positions = <0>;
 
-&mt { MT_CORE };
-
 // Mask CTRL on left/right hold to avoid accidental jumps to start/end of doc.
 #define MASK_MODS(NAME, MODS, BINDING)                                         \
   ZMK_MOD_MORPH(NAME, bindings = <BINDING>, <BINDING>; mods = <MODS>;)
