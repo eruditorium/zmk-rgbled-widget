@@ -40,7 +40,7 @@
 /* Nav cluster */
 // Trigger tap-action on all interrupts.
 #define MT_CORE                                                                \
-  flavor = "tap-preferred";              z                                      \
+  flavor = "tap-preferred";                                                    \
   tapping-term-ms = <170>;                                                     \
   quick-tap-ms = <100>;                                                        \
   hold-trigger-key-positions = <0>;
