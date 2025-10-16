@@ -208,7 +208,7 @@ label= "SYM"                               ;
 label= "FUN"                               ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 // ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-// ┃           ┃           ┃           ┃           ┃           ┃   ┃   VOL UP  ┃    F7     ┃    F8     ┃     F9    ┃    F12    ┃
+// ┃           ┃  int_bat  ┃ int_con   ┃           ┃           ┃   ┃   VOL UP  ┃    F7     ┃    F8     ┃     F9    ┃    F12    ┃
 // ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
 // ┃ BT CLR    ┃  BT SEL 0 ┃ BT SEL 1  ┃ BT SEL 2  ┃ BT SEL 3  ┃   ┃  VOL DWN  ┃    F4     ┃    F5     ┃     F6    ┃    F11    ┃
 // ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫
@@ -219,7 +219,7 @@ label= "FUN"                               ;
  bindings = <
 // ╷            ╷          ╷          ╷          ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷
 
-    &none       &none      &none      &none      &none            &kp C_VOL_UP &kp F7      &kp F8      &kp F9      &kp F12
+    &none       &int_bat   &int_con   &none      &none            &kp C_VOL_UP &kp F7      &kp F8      &kp F9      &kp F12
     &bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &kp C_VOL_DN &kp F6    &kp F5      &kp F6      &kp F11
     &none       &none      &none      &none      &none            &kp C_MUTE   &kp F1      &kp F2      &kp F3      &kp F10
                                       &trans     &trans          &trans       &trans
