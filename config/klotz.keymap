@@ -90,9 +90,8 @@
 
 // Mask CTRL on left/right hold to avoid accidental jumps to start/end of doc.
 #define MASK_MODS(NAME, MODS, BINDING)                                         \
-  ZMK_MOD_MORPH(NAME, bindings = <BINDING>, <BINDING>; mods = <MODS>;);
+  ZMK_MOD_MORPH(NAME, bindings = <BINDING>, <BINDING>; mods = <MODS>;)
 
-&mt { MT_CORE };
 MASK_MODS(masked_home, (MOD_LCTL), &kp HOME)
 MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
 
@@ -106,6 +105,12 @@ ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 #define NAV_BSPC  &mt LC(BSPC) BSPC  // Tap: bspc  | Long-tap: delete word bwd.
 #define NAV_DEL   &mt LC(DEL)  DEL   // Tap: del   | Long-tap: delete word fwd
 
+&mt {
+  quick-tap-ms = <100>;
+  global-quick-tap;
+  flavor = "tap-preferred";
+  tapping-term-ms = <170>;
+};
 
 
 
