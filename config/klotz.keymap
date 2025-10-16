@@ -92,6 +92,7 @@
 #define MASK_MODS(NAME, MODS, BINDING)                                         \
   ZMK_MOD_MORPH(NAME, bindings = <BINDING>, <BINDING>; mods = <MODS>;);
 
+&mt { MT_CORE }
 MASK_MODS(masked_home, (MOD_LCTL), &kp HOME)
 MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
 
@@ -239,7 +240,7 @@ label= "FUN"                               ;
                 ;
         };
         sqsp: sqsp {
-            label = "quote space";
+            label = "single quote space";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
